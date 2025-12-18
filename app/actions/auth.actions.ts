@@ -5,7 +5,7 @@ import prisma from "../db/prisma";
 import { logEvent } from "../utils/sentry";
 import { removeAuthCookie, setAuthCookie, signAuthToken } from "@/lib/auth";
 
-type ResponseResult = {
+export type ResponseResult = {
   success: boolean;
   message: string;
 };
