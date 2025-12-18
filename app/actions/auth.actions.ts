@@ -71,3 +71,36 @@ export async function logoutUser(): Promise<ResponseResult> {
     return {success: false, message: "Logout failed, please try again"}
   }
 }
+
+//Log user in
+export async function loginUser(prevState: ResponseResult, formaData: FormData):Promise<ResponseResult> {
+try {
+  const email =formaData.get("email") as string
+  const password =formaData.get("password") as string
+  if(!email || !password){
+    logEvent("Validation error: Missing login fields", "auth", {email}, "warning")
+    return {success: false, message: "Email and password are required"}
+  }
+
+  const user = await prisma.user.findUnique({where: {email}})
+  if(!user || !user.pasword){
+    logEvent(`Login failed : User not found - ${email}`, "auth", {email}, "warning")
+    return {success: false, message:"Invalid email or password"}
+  }
+
+  const isMatch = await bcrypt.compare(password, user.pasword)
+
+  if(!isMatch){
+    logEvent(`Login failed : Incorrect password`, "auth", {email}, "warning")
+    return {success: false, message:"Invalid email or password"}
+  }
+
+  const token = await signAuthToken({userId: user.id})
+  await setAuthCookie(token)
+  return {success: true, message: "Login successful"}
+
+} catch (error) {
+  logEvent("Unexpected error during login", "auth" ,{}, "error", error)
+  return {success: false, message: 'Error during log in'}
+}
+}
