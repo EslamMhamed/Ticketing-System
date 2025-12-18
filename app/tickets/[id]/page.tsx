@@ -1,6 +1,7 @@
 import { getTicketById } from "@/app/actions/ticket.actions"
 import { logEvent } from "@/app/utils/sentry"
 import { getPriorityClass } from "@/app/utils/ui"
+import CloseTicketButton from "@/components/CloseTicketButton"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -44,6 +45,9 @@ async function TicketDetailsPage({params}:{params: Promise<{id: string}>}) {
             </div>
             <Link href={"/tickets"} className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition" > Back to Tickets
             </Link>
+            {ticket.status !== "Close" && 
+                <CloseTicketButton isClosed={ticket.status === "Close"} ticketId={ticket.id} />
+            }
         </div>
     </div>
   )
