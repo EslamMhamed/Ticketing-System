@@ -21,13 +21,14 @@ export async function signAuthToken(payload:any){
 //Decrypt and verify token
 export async function verifyAuthToken<T>(token: string): Promise<T>{
     try {
-        const {payload}= jwtVerify(token, secret)
+          const { payload } = await jwtVerify(token, secret);
         return payload as T
     } catch (error) {
         logEvent("Token decryption failed", "auth", {tokenSnippet:token.slice(0, 10)}, "error", error)
         throw new Error("Token decryption failed")
     }
 }
+
 
 //Set the auth cookie
 export async function setAuthCookie(token: string){
