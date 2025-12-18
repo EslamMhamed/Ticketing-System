@@ -16,8 +16,13 @@ A simple and fast support ticket system built with Next.js 16, TypeScript, Prism
 
 # Technologies
 -Next.js 16 
+
 -TypeScript
+
 -Prisma ORM
+
 -Neon.tech (Postgres Database)
+
 -Tailwind CSS
+
 -Sentry (Error & Performance Monitoring)
