@@ -18,7 +18,7 @@ async function TicketDetailsPage({params}:{params: Promise<{id: string}>}) {
     logEvent("Viewing ticket details", "ticket", {ticketId: ticket.id}, "info")
 
   return (
-    <div className="min-h-screen bg-blue-50 p-8 ">
+    <div className="min-h-[calc(100vh-120px)] bg-blue-50 p-8 ">
         <div className="max-w-2xl mx-auto bg-white rounded-lg shadow border border-gray-200 space-y-6 p-8">
             <h1 className="text-3xl font-bold text-blue-600">
                 {ticket.subject}

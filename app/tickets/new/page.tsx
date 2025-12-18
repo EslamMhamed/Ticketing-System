@@ -9,7 +9,7 @@ async function NewTicketsPage() {
      redirect("/login")
   }
   return (
-    <main className="min-h-screen bg-blue-50 flex items-center justify-center px-4">
+    <main className="min-h-[calc(100vh-120px)] bg-blue-50 flex items-center justify-center px-4">
       <NewTicketForm />
     </main>
   )

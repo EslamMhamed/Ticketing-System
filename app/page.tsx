@@ -3,7 +3,7 @@ import { FaTicketAlt } from "react-icons/fa"
 
 function HomePage() {
   return (
-    <main className="flex flex-col text-center items-center justify-center min-h-screen px-4">
+    <main className="flex flex-col text-center items-center justify-center min-h-[calc(100vh-120px)] px-4">
       <h1 className="text-4xl md:text-5xl font-bold mb-4 text-blue-600">
         <FaTicketAlt className="mx-auto mb-4 text-red-600 " size={60} />
         Welcome to Quick Ticket
