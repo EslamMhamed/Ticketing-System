@@ -1,6 +1,10 @@
+import { getCurrentUser } from "@/lib/current-user";
 import Link from "next/link";
+import LogoutButton from "./LogoutButton";
 
-function Navbar() {
+async function Navbar() {
+
+  const user = await getCurrentUser()
   return (
     <nav className="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center ">
       <div>
@@ -9,7 +13,9 @@ function Navbar() {
         </Link>
       </div>
       <div className="flex items-center space-x-4">
-        <Link
+        {user ? (
+          <>
+             <Link
           href={"/tickets/new"}
           className="hover:underline text-gray-700 transition"
         >
@@ -21,20 +27,27 @@ function Navbar() {
         >
           My Tickets
         </Link>
-        <Link
+        <LogoutButton />
+          </>
+        ) : (
+          <>
+          <Link
+              href='/login'
+              className='text-blue-600 hover:underline transition'
+            >
+              Login
+            </Link>
+          <Link
           href={"/register"}
           className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
         >
           Register
         </Link>
-        <form>
-          <button
-            type="submit"
-            className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
-          >
-            Logout
-          </button>
-        </form>
+        
+          </>
+        )}
+       
+        
       </div>
     </nav>
   );
