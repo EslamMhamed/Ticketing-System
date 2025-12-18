@@ -27,7 +27,7 @@ function CloseTicketButton({ticketId, isClosed}: CloseTicketProps) {
   return (
     <form action={formAction}>
         <input type="hidden" name="ticketId" value={ticketId} />
-        <button type="submit" className="bg-red-500 text-white px-3 py-3 w-full rounded-md hover:bg-red-600 transition">
+        <button type="submit" className="bg-red-500 text-white px-3 py-3 w-full rounded-md hover:bg-red-600 transition cursor-pointer">
             Close Ticket 
         </button>
     </form>
